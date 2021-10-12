@@ -17,30 +17,30 @@ public class Teclado extends JPanel{
 		//setBackground(Color.RED);
 		setLayout(new GridLayout(5,4)); // 5 linhas e 4 colunas do teclado
 		
-		//add(new Botao("%", COR_CINZA_ESCURO));
-		//add(new Botao("CE", COR_CINZA_ESCURO));
-		//add(new Botao("C", COR_CINZA_ESCURO));
-		//add(new Botao("<", COR_CINZA_ESCURO));
+		add(new Botao("%", COR_CINZA_ESCURO));
+		add(new Botao("CE", COR_CINZA_ESCURO));
+		add(new Botao("C", COR_CINZA_ESCURO));
+		add(new Botao("/", COR_CINZA_ESCURO));
 
-		//add(new Botao("7", COR_PRETO_CLARO));
-		//add(new Botao("8", COR_PRETO_CLARO));
-		//add(new Botao("9", COR_PRETO_CLARO));
-		//add(new Botao("X", COR_CINZA_ESCURO));
+		add(new Botao("7", COR_PRETO_CLARO));
+		add(new Botao("8", COR_PRETO_CLARO));
+		add(new Botao("9", COR_PRETO_CLARO));
+		add(new Botao("X", COR_CINZA_ESCURO));
 		
-		//add(new Botao("4", COR_PRETO_CLARO));
-		//add(new Botao("5", COR_PRETO_CLARO));
-		//add(new Botao("6", COR_PRETO_CLARO));
-		//add(new Botao("-", COR_CINZA_ESCURO));
+		add(new Botao("4", COR_PRETO_CLARO));
+		add(new Botao("5", COR_PRETO_CLARO));
+		add(new Botao("6", COR_PRETO_CLARO));
+		add(new Botao("-", COR_CINZA_ESCURO));
 		
-		//add(new Botao("1", COR_PRETO_CLARO));
-		//add(new Botao("2", COR_PRETO_CLARO));
-		//add(new Botao("3", COR_PRETO_CLARO));
-		//add(new Botao("+", COR_CINZA_ESCURO));
+		add(new Botao("1", COR_PRETO_CLARO));
+		add(new Botao("2", COR_PRETO_CLARO));
+		add(new Botao("3", COR_PRETO_CLARO));
+		add(new Botao("+", COR_CINZA_ESCURO));
 		
-		//add(new Botao("+/-", COR_PRETO_CLARO));
-		//add(new Botao("0", COR_PRETO_CLARO));
-		//add(new Botao(",", COR_PRETO_CLARO));
-		//add(new Botao("=", COR_CINZA_CLARO));
+		add(new Botao("+/-", COR_PRETO_CLARO));
+		add(new Botao("0", COR_PRETO_CLARO));
+		add(new Botao(",", COR_PRETO_CLARO));
+		add(new Botao("=", COR_CINZA_CLARO));
 		
 		
 	}

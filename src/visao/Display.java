@@ -18,7 +18,7 @@ public class Display extends JPanel{
 		setBackground(new Color(31,31,31));
 		label = new JLabel("123");
 		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Arial", Font.PLAIN, 45));
+		label.setFont(new Font("Segoe UI", Font.PLAIN, 45));
 		
 		setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 100));
 		add(label);
