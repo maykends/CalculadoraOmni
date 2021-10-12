@@ -13,11 +13,13 @@ public class Calculadora extends JFrame{
 		
 		
 		organizaLayout();
-	
+		
 		setSize(360,540);
+		//setUndecorated(true); // remove barra
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		setTitle("Calculadora");
 	}
 
 	private void organizaLayout() {
