@@ -2,7 +2,6 @@ package visao;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-
 import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
@@ -12,7 +11,6 @@ public class Teclado extends JPanel{
 	private final Color COR_CINZA_CLARO = new Color(35, 35, 35);
 	private final Color COR_PRETO_CLARO = new Color(11, 11, 11);
 	
-
 	public Teclado() {
 		//setBackground(Color.RED);
 		setLayout(new GridLayout(5,4)); // 5 linhas e 4 colunas do teclado

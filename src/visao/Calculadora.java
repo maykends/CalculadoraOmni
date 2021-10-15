@@ -1,20 +1,17 @@
 package visao;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-
 
 @SuppressWarnings("serial")
 public class Calculadora extends JFrame{
 	
 	public Calculadora() {
 		
-		
 		organizaLayout();
 		
-		setSize(360,540);
+		setSize(360, 540);
 		//setUndecorated(true); // remove barra
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
