@@ -35,5 +35,5 @@ public class Calculadora extends JFrame{
 		new Calculadora();
 
 	}
-
+///////////////////////////////TESTANDO
 }
