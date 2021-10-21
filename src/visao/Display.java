@@ -2,9 +2,7 @@ package visao;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import modelo.Memoria;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FlowLayout;

@@ -1,9 +1,5 @@
 package modelo;
 
-/**
- * @author mayke
- *
- */
 public class Memoria {
 
 	// Criando uma instância
