@@ -1,7 +1,6 @@
 package visao;
 
 import java.awt.Color;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -18,7 +17,7 @@ public class Teclado extends JPanel implements ActionListener{
 	public Teclado() {
 		
 		
-		//setBackground(Color.RED);
+		setBackground(Color.BLACK);
 		
 		GridBagLayout layout = new GridBagLayout(); //layout flexivel
 		GridBagConstraints c = new GridBagConstraints(); 
@@ -26,13 +25,24 @@ public class Teclado extends JPanel implements ActionListener{
 		//setLayout(new GridLayout(5,4)); // 5 linhas e 4 colunas do teclado
 		setLayout(layout);
 		
+		c.weightx = 1; // peso para o eixo x
+		c.weighty = 1; // peso para o eixo x
+		c.fill = GridBagConstraints.BOTH; // expande os botoes de acordo com os pesos
 		
+		// Linha 1
 		addBotao("%", COR_CINZA_ESCURO, c, 0, 0);
 		addBotao("CE", COR_CINZA_ESCURO, c, 1, 0);
 		addBotao("C", COR_CINZA_ESCURO, c, 2, 0);
 		addBotao("/", COR_CINZA_ESCURO, c, 3, 0);
+	
+		// Linha 1
+		//c.gridwidth = 2;
+		//addBotao("C", COR_CINZA_ESCURO, c, 0, 0);
+		//c.gridwidth = 1;
+		//addBotao("%", COR_CINZA_ESCURO, c, 2, 0);
+		//addBotao("/", COR_CINZA_ESCURO, c, 3, 0);
 		
-		//////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////EXEMPLO/////////////////////////////////////////////////
 		
 		//c.gridy = 0;
 		//c.gridx = 0;
@@ -66,6 +76,7 @@ public class Teclado extends JPanel implements ActionListener{
 		
 		//////////////////////////////////////////////////////////////////////////////////
 		
+		// Linha 2
 		addBotao("7", COR_PRETO_CLARO, c, 0, 1);
 		addBotao("8", COR_PRETO_CLARO, c, 1, 1);
 		addBotao("9", COR_PRETO_CLARO, c, 2, 1);
@@ -108,6 +119,7 @@ public class Teclado extends JPanel implements ActionListener{
 		
 		//////////////////////////////////////////////////////////////////////////////////	
 		
+		// Linha 3
 		addBotao("4", COR_PRETO_CLARO, c, 0, 2);
 		addBotao("5", COR_PRETO_CLARO, c, 1, 2);
 		addBotao("6", COR_PRETO_CLARO, c, 2, 2);
@@ -150,6 +162,7 @@ public class Teclado extends JPanel implements ActionListener{
 		
 		//////////////////////////////////////////////////////////////////////////////////
 		
+		// Linha 4
 		addBotao("1", COR_PRETO_CLARO, c, 0, 3);
 		addBotao("2", COR_PRETO_CLARO, c, 1, 3);
 		addBotao("3", COR_PRETO_CLARO, c, 2, 3);
@@ -180,11 +193,11 @@ public class Teclado extends JPanel implements ActionListener{
 		//btnSomar.addActionListener(this);
 		//add(btnSomar);
 		
-		
+		// Linha 5
 		addBotao("+/-", COR_PRETO_CLARO, c, 0, 4);
 		addBotao("0", COR_PRETO_CLARO, c, 1, 4);
 		addBotao(",", COR_PRETO_CLARO, c, 2, 4);
-		addBotao("=", COR_CINZA_ESCURO, c, 3, 4);
+		addBotao("=", COR_CINZA_CLARO, c, 3, 4);
 		
 		//add(new Botao("+/-", COR_PRETO_CLARO), c);
 		//add(new Botao("0", COR_PRETO_CLARO), c);
@@ -210,8 +223,8 @@ public class Teclado extends JPanel implements ActionListener{
 	}
 
 	private void addBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {
-		c.gridx = x;
-		c.gridy = y;
+		c.gridx = x; // linha
+		c.gridy = y; // coluna
 		Botao botao = new Botao(texto, cor);
 		add(botao, c);
 		

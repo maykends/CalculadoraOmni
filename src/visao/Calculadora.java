@@ -11,7 +11,7 @@ public class Calculadora extends JFrame{
 		
 		organizaLayout();
 		
-		setSize(360, 540);
+		setSize(334, 503);
 		//setUndecorated(true); // remove barra
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -35,5 +35,5 @@ public class Calculadora extends JFrame{
 		new Calculadora();
 
 	}
-///////////////////////////////TESTANDO
+
 }
