@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Memoria {
+	
+	private enum TipoComando{
+		PORCENTO, ZERAR, NUMERO, DIV, MULT, SOMA, SUB, IGUAL, VIRGULA, MAISOUMENOS;
+	};
 
 	// Criando uma instância
 	private static Memoria instancia = new Memoria();
@@ -31,16 +35,57 @@ public class Memoria {
 		return textoAtual.isEmpty() ? "0" : textoAtual; // Se for verdadeiro retorna "0", se não, retorna o textoAtual = "" no display
 	}
 	
-	public void processarComando(String valor) {
-		if("CE".equals(valor)) {
+	public void processarComando(String texto) {
+		
+		TipoComando tipoComando = detectarTipoComando(texto);
+		System.out.println(tipoComando);
+		
+		if("CE".equals(texto)|| "C".equals(texto))   {
 			textoAtual = "";
 		}else {
-			textoAtual += valor;
+			textoAtual += texto;
 		}
 		
 		//textoAtual += valor;
 		//observadores.forEach(o -> o.valorAlterado(textoAtual));
 		observadores.forEach(o -> o.valorAlterado(getTextoAtual()));
+	}
+
+	// Detecta o tipo de comando
+	private TipoComando detectarTipoComando(String texto) {
+		if(textoAtual.isEmpty() && texto == "0") {
+			return null;
+		}
+		try {
+			Integer.parseInt(texto);
+			return TipoComando.NUMERO;
+		} catch(NumberFormatException e) {
+			// Quando não for número..
+			if("%".equals(texto)) {
+				return TipoComando.PORCENTO;
+			}else if("CE".equals(texto)) {
+				return TipoComando.ZERAR;
+			}else if("C".equals(texto)) {
+				return TipoComando.ZERAR;
+			}else if("/".equals(texto)) {
+				return TipoComando.DIV;
+			}else if("*".equals(texto)) {
+				return TipoComando.MULT;
+			}else if("-".equals(texto)) {
+				return TipoComando.SUB;
+			}else if("+".equals(texto)) {
+				return TipoComando.SOMA;
+			}else if("=".equals(texto)) {
+				return TipoComando.IGUAL;
+			}else if(",".equals(texto)) {
+				return TipoComando.VIRGULA;
+			}else if("±".equals(texto)) {
+				return TipoComando.MAISOUMENOS;
+			}
+		}
+		return null;
+		
+		
 	}
 	
 }
