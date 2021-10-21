@@ -1,0 +1,7 @@
+package modelo;
+
+public interface MemoriaObservador {
+
+	// Todos os métodos que estão dentro de interface sao métodos publicos
+	void valorAlterado(String novoValor);
+}
