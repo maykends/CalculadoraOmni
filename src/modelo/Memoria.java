@@ -1,5 +1,9 @@
 package modelo;
 
+/**
+ * @author mayke
+ *
+ */
 public class Memoria {
 
 	// Criando uma instância
@@ -19,6 +23,10 @@ public class Memoria {
 	// Método get para pegar o textoAtual no Display
 	public String getTextoAtual() {
 		return textoAtual.isEmpty() ? "0" : textoAtual; // Se for verdadeiro retorna "0", se não, retorna o textoAtual = "" no display
+	}
+
+	public void setTextoAtual(String textoAtual) {
+		this.textoAtual = textoAtual;
 	}
 	
 }
