@@ -1,12 +1,9 @@
 package visao;
 
 import java.awt.Color;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import modelo.Memoria;
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -92,8 +89,8 @@ public class Teclado extends JPanel implements ActionListener{
 		
 		if (e.getSource() instanceof JButton) {
 			JButton botao = (JButton) e.getSource(); // faz um cast por conta que é gado um obect
-			//System.out.println("Executando ...");
-			//System.out.println(botao.getText());
+			System.out.println("Executando ...");
+			System.out.println(botao.getText());
 			Memoria.getInstancia().processarComando(botao.getText());
 		}
 		

@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelo.Memoria;
 import modelo.MemoriaObservador;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FlowLayout;

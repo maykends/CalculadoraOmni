@@ -50,6 +50,10 @@ public class Memoria {
 			textoBuffer = "";
 			substituir = false;
 			ultimaOperacao = null;	
+		}else if(tipoComando == TipoComando.MAISOUMENOS && textoAtual.contains("-")) {
+			textoAtual = "-" + textoAtual.substring(1);
+		}else if(tipoComando == TipoComando.MAISOUMENOS && !textoAtual.contains("-")) {
+			textoAtual = "-" + textoAtual;
 		}else if (tipoComando == TipoComando.NUMERO
 				|| tipoComando == TipoComando.VIRGULA) {
 			textoAtual = substituir ? texto : textoAtual + texto;
@@ -73,7 +77,8 @@ public class Memoria {
 	}
 
 	private String obterResultadoOperacao() {
-		if(ultimaOperacao == null) {
+		if(ultimaOperacao == null 
+				|| ultimaOperacao == TipoComando.IGUAL) {
 			return textoAtual;
 		}
 		
@@ -91,7 +96,8 @@ public class Memoria {
 			resultado = numeroBuffer / numeroAtual;
 		}else if(ultimaOperacao == TipoComando.MULT) {
 			resultado = numeroBuffer * numeroAtual;
-		}
+		}//else if(ultimaOperacao == TipoComando.MAISOUMENOS) {
+			//resultado = numeroBuffer * numeroAtual;
 		
 		String texto = Double.toString(resultado).replace(".", ",");
 		boolean inteiro = texto.endsWith(",0");

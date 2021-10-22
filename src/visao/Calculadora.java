@@ -28,7 +28,7 @@ public class Calculadora extends JFrame{
 		add(display, BorderLayout.NORTH);
 		
 		Teclado teclado = new Teclado();
-		add(teclado, BorderLayout.CENTER);
+		add(teclado, BorderLayout.CENTER); // rever isso aqui <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,
 		
 	}
 
