@@ -53,7 +53,12 @@ public class Memoria {
 		}else if (tipoComando == TipoComando.NUMERO
 				|| tipoComando == TipoComando.VIRGULA) {
 			textoAtual = substituir ? texto : textoAtual + texto;
-			substituir = false;
+			substituir = false; // depois daqui, são as operações
+		}else {
+			substituir = true; // Ao clicar em uma operação ele vai passar a calcular
+			textoAtual = obterResultadoOperacao();
+			textoBuffer = textoAtual;
+			ultimaOperacao = tipoComando;
 		}
 		
 		//if("CE".equals(texto)|| "C".equals(texto))   {
@@ -65,6 +70,32 @@ public class Memoria {
 		//textoAtual += valor;
 		//observadores.forEach(o -> o.valorAlterado(textoAtual));
 		observadores.forEach(o -> o.valorAlterado(getTextoAtual()));
+	}
+
+	private String obterResultadoOperacao() {
+		if(ultimaOperacao == null) {
+			return textoAtual;
+		}
+		
+		double numeroBuffer =
+				Double.parseDouble(textoBuffer.replace(",", "."));
+		double numeroAtual =
+				Double.parseDouble(textoAtual.replace(",", "."));
+		double resultado = 0;
+		
+		if (ultimaOperacao == TipoComando.SOMA) {
+			resultado = numeroBuffer + numeroAtual;
+		}else if(ultimaOperacao == TipoComando.SUB) {
+			resultado = numeroBuffer - numeroAtual;
+		}else if(ultimaOperacao == TipoComando.DIV) {
+			resultado = numeroBuffer / numeroAtual;
+		}else if(ultimaOperacao == TipoComando.MULT) {
+			resultado = numeroBuffer * numeroAtual;
+		}
+		
+		String texto = Double.toString(resultado).replace(".", ",");
+		boolean inteiro = texto.endsWith(",0");
+		return inteiro ? texto.replace(",0",""): texto;
 	}
 
 	// Detecta o tipo de comando
