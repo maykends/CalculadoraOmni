@@ -15,7 +15,10 @@ public class Memoria {
 	private final List<MemoriaObservador> observadores = 
 			new ArrayList<>();
 	
+	private TipoComando ultimaOperacao = null;
+	private boolean substituir = false; 
 	private String textoAtual = ""; 
+	private String textoBuffer = "";
 	
 	// Construtor em que controla a criacao dentro da propria classe
 	private Memoria() {
@@ -38,13 +41,26 @@ public class Memoria {
 	public void processarComando(String texto) {
 		
 		TipoComando tipoComando = detectarTipoComando(texto);
-		System.out.println(tipoComando);
+		//System.out.println(tipoComando);
 		
-		if("CE".equals(texto)|| "C".equals(texto))   {
+		if(tipoComando == null) {
+			return;
+		}else if(tipoComando == TipoComando.ZERAR) {
 			textoAtual = "";
-		}else {
-			textoAtual += texto;
+			textoBuffer = "";
+			substituir = false;
+			ultimaOperacao = null;	
+		}else if (tipoComando == TipoComando.NUMERO
+				|| tipoComando == TipoComando.VIRGULA) {
+			textoAtual = substituir ? texto : textoAtual + texto;
+			substituir = false;
 		}
+		
+		//if("CE".equals(texto)|| "C".equals(texto))   {
+		//	textoAtual = "";
+		//}else {
+		//	textoAtual += texto;
+		//}
 		
 		//textoAtual += valor;
 		//observadores.forEach(o -> o.valorAlterado(textoAtual));
@@ -77,7 +93,7 @@ public class Memoria {
 				return TipoComando.SOMA;
 			}else if("=".equals(texto)) {
 				return TipoComando.IGUAL;
-			}else if(",".equals(texto)) {
+			}else if(",".equals(texto) && !textoAtual.contains(",")) {
 				return TipoComando.VIRGULA;
 			}else if("±".equals(texto)) {
 				return TipoComando.MAISOUMENOS;
