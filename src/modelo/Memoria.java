@@ -54,7 +54,9 @@ public class Memoria {
 			textoAtual = "-" + textoAtual.substring(1);
 		}else if(tipoComando == TipoComando.MAISOUMENOS && !textoAtual.contains("-")) {
 			textoAtual = "-" + textoAtual;
-		}else if (tipoComando == TipoComando.NUMERO
+		}
+		
+		else if (tipoComando == TipoComando.NUMERO
 				|| tipoComando == TipoComando.VIRGULA) {
 			textoAtual = substituir ? texto : textoAtual + texto;
 			substituir = false; // depois daqui, são as operações
@@ -65,14 +67,6 @@ public class Memoria {
 			ultimaOperacao = tipoComando;
 		}
 		
-		//if("CE".equals(texto)|| "C".equals(texto))   {
-		//	textoAtual = "";
-		//}else {
-		//	textoAtual += texto;
-		//}
-		
-		//textoAtual += valor;
-		//observadores.forEach(o -> o.valorAlterado(textoAtual));
 		observadores.forEach(o -> o.valorAlterado(getTextoAtual()));
 	}
 
@@ -96,8 +90,7 @@ public class Memoria {
 			resultado = numeroBuffer / numeroAtual;
 		}else if(ultimaOperacao == TipoComando.MULT) {
 			resultado = numeroBuffer * numeroAtual;
-		}//else if(ultimaOperacao == TipoComando.MAISOUMENOS) {
-			//resultado = numeroBuffer * numeroAtual;
+			}
 		
 		String texto = Double.toString(resultado).replace(".", ",");
 		boolean inteiro = texto.endsWith(",0");
@@ -122,7 +115,7 @@ public class Memoria {
 				return TipoComando.ZERAR;
 			}else if("/".equals(texto)) {
 				return TipoComando.DIV;
-			}else if("*".equals(texto)) {
+			}else if("X".equals(texto)) {
 				return TipoComando.MULT;
 			}else if("-".equals(texto)) {
 				return TipoComando.SUB;
@@ -137,7 +130,6 @@ public class Memoria {
 			}
 		}
 		return null;
-		
 		
 	}
 	
