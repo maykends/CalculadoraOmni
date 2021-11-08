@@ -18,7 +18,7 @@ public class Display extends JPanel implements MemoriaObservador{
 		//setBackground(Color.GREEN);
 		setBackground(new Color(31,31,31));
 		//label = new JLabel("123"); 
-		label = new JLabel(Memoria.getInstancia().getTextoAtual()); // vamos substituir por texto atual
+		label = new JLabel(Memoria.getInstancia().getTextoAtual()); // Substitui por textoAtual
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Segoe UI", Font.PLAIN, 45));
 		

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class Teclado extends JPanel implements ActionListener{
 	
-	// Definindo as cores aos botões
+	// Define as cores dos botões
 	private final Color COR_CINZA_ESCURO = new Color(19, 19, 19);
 	private final Color COR_CINZA_CLARO = new Color(35, 35, 35);
 	private final Color COR_PRETO_CLARO = new Color(11, 11, 11);
@@ -21,62 +21,58 @@ public class Teclado extends JPanel implements ActionListener{
 		// Define cor de fundo
 		setBackground(COR_CINZA_CLARO);
 	
-		// Define 5 linhas e 4 colunas
+		// Define GridLayout com 5 linhas e 4 colunas
 		setLayout(new GridLayout(5,4)); 
 	
-		// Primeira Linha
-		addBotao("%", COR_CINZA_ESCURO);
-		addBotao("CE", COR_CINZA_ESCURO);
-		addBotao("C", COR_CINZA_ESCURO);
-		addBotao("/", COR_CINZA_ESCURO);
+		// 1° linha
+		adcionaBotao("%", COR_CINZA_ESCURO);
+		adcionaBotao("CE", COR_CINZA_ESCURO);
+		adcionaBotao("C", COR_CINZA_ESCURO);
+		adcionaBotao("/", COR_CINZA_ESCURO);
 	
-		// Segunda Linha
-		addBotao("7", COR_PRETO_CLARO);
-		addBotao("8", COR_PRETO_CLARO);
-		addBotao("9", COR_PRETO_CLARO);
-		addBotao("X", COR_CINZA_ESCURO);
+		// 2° linha
+		adcionaBotao("7", COR_PRETO_CLARO);
+		adcionaBotao("8", COR_PRETO_CLARO);
+		adcionaBotao("9", COR_PRETO_CLARO);
+		adcionaBotao("X", COR_CINZA_ESCURO);
 		
-		// Terceira Linha
-		addBotao("4", COR_PRETO_CLARO);
-		addBotao("5", COR_PRETO_CLARO);
-		addBotao("6", COR_PRETO_CLARO);
-		addBotao("-", COR_CINZA_ESCURO);
+		// 3° linha
+		adcionaBotao("4", COR_PRETO_CLARO);
+		adcionaBotao("5", COR_PRETO_CLARO);
+		adcionaBotao("6", COR_PRETO_CLARO);
+		adcionaBotao("-", COR_CINZA_ESCURO);
 
-		// Quarta Linha
-		addBotao("1", COR_PRETO_CLARO);
-		addBotao("2", COR_PRETO_CLARO);
-		addBotao("3", COR_PRETO_CLARO);
-		addBotao("+", COR_CINZA_ESCURO);
+		// 4° linha
+		adcionaBotao("1", COR_PRETO_CLARO);
+		adcionaBotao("2", COR_PRETO_CLARO);
+		adcionaBotao("3", COR_PRETO_CLARO);
+		adcionaBotao("+", COR_CINZA_ESCURO);
 		
-		// Quinta Linha 
-		addBotao("±", COR_PRETO_CLARO);
-		addBotao("0", COR_PRETO_CLARO);
-		addBotao(",", COR_PRETO_CLARO);
-		addBotao("=", COR_CINZA_CLARO);
-		
+		// 5° linha
+		adcionaBotao("±", COR_PRETO_CLARO);
+		adcionaBotao("0", COR_PRETO_CLARO);
+		adcionaBotao(",", COR_PRETO_CLARO);
+		adcionaBotao("=", COR_CINZA_CLARO);		
 	}
 
-	private void addBotao(String texto, Color cor) {
-		Botao botao = new Botao(texto, cor); // para cada novo botao de adicionar
-		botao.addActionListener(this); // Chamada para escutar os botões do teclado
+	private void adcionaBotao(String textoBotao, Color cor) {
+		Botao botao = new Botao(textoBotao, cor); 
+		botao.addActionListener(this); // Escuta botões
 		add(botao);
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() instanceof JButton) {
-			JButton botao = (JButton) e.getSource(); // faz um cast por conta que é gado um obect
+			// faz um cast por conta que é gerado um object
+			JButton botao = (JButton) e.getSource(); 
 			System.out.println("Executando ...");
 			System.out.println(botao.getText());
+			// Captura o botão
 			Memoria.getInstancia().processarComando(botao.getText());
-		}
-		
-		
+		}	
 	}
-
-
 }
 
 

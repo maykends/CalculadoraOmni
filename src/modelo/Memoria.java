@@ -5,17 +5,27 @@ import java.util.List;
 
 public class Memoria {
 	
-	private enum TipoComando{
-		PORCENTO, ZERAR, NUMERO, DIV, MULT, SOMA, SUB, IGUAL, VIRGULA, MAISOUMENOS;
+	// Define os tipos de operacação
+	private enum TipoOperacao{
+		PORCENTO, 
+		ZERAR, 
+		NUMERO, 
+		DIVISAO, 
+		MULTIPLICACAO, 
+		SOMATORIO, 
+		SUBTRACAO, 
+		IGUALDADE, 
+		VIRGULA, 
+		MAISOUMENOS;
 	};
 
-	// Criando uma instância
+	// Cria uma instancia
 	private static Memoria instancia = new Memoria();
 	
 	private final List<MemoriaObservador> observadores = 
 			new ArrayList<>();
 	
-	private TipoComando ultimaOperacao = null;
+	private TipoOperacao ultimaOperacao = null;
 	private boolean substituir = false; 
 	private String textoAtual = ""; 
 	private String textoBuffer = "";
@@ -40,24 +50,24 @@ public class Memoria {
 	
 	public void processarComando(String texto) {
 		
-		TipoComando tipoComando = detectarTipoComando(texto);
-		//System.out.println(tipoComando);
+		TipoOperacao tipoComando = detectaTipoOperacao(texto);
+		System.out.println(tipoComando);
 		
 		if(tipoComando == null) {
 			return;
-		}else if(tipoComando == TipoComando.ZERAR) {
+		}else if(tipoComando == TipoOperacao.ZERAR) {
 			textoAtual = "";
 			textoBuffer = "";
 			substituir = false;
 			ultimaOperacao = null;	
-		}else if(tipoComando == TipoComando.MAISOUMENOS && textoAtual.contains("-")) {
+		}else if(tipoComando == TipoOperacao.MAISOUMENOS && textoAtual.contains("-")) {
 			textoAtual = "-" + textoAtual.substring(1);
-		}else if(tipoComando == TipoComando.MAISOUMENOS && !textoAtual.contains("-")) {
+		}else if(tipoComando == TipoOperacao.MAISOUMENOS && !textoAtual.contains("-")) {
 			textoAtual = "-" + textoAtual;
 		}
 		
-		else if (tipoComando == TipoComando.NUMERO
-				|| tipoComando == TipoComando.VIRGULA) {
+		else if (tipoComando == TipoOperacao.NUMERO
+				|| tipoComando == TipoOperacao.VIRGULA) {
 			textoAtual = substituir ? texto : textoAtual + texto;
 			substituir = false; // depois daqui, são as operações
 		}else {
@@ -72,7 +82,7 @@ public class Memoria {
 
 	private String obterResultadoOperacao() {
 		if(ultimaOperacao == null 
-				|| ultimaOperacao == TipoComando.IGUAL) {
+				|| ultimaOperacao == TipoOperacao.IGUALDADE) {
 			return textoAtual;
 		}
 		
@@ -82,13 +92,13 @@ public class Memoria {
 				Double.parseDouble(textoAtual.replace(",", "."));
 		double resultado = 0;
 		
-		if (ultimaOperacao == TipoComando.SOMA) {
+		if (ultimaOperacao == TipoOperacao.SOMATORIO) {
 			resultado = numeroBuffer + numeroAtual;
-		}else if(ultimaOperacao == TipoComando.SUB) {
+		}else if(ultimaOperacao == TipoOperacao.SUBTRACAO) {
 			resultado = numeroBuffer - numeroAtual;
-		}else if(ultimaOperacao == TipoComando.DIV) {
+		}else if(ultimaOperacao == TipoOperacao.DIVISAO) {
 			resultado = numeroBuffer / numeroAtual;
-		}else if(ultimaOperacao == TipoComando.MULT) {
+		}else if(ultimaOperacao == TipoOperacao.MULTIPLICACAO) {
 			resultado = numeroBuffer * numeroAtual;
 			}
 		
@@ -97,36 +107,36 @@ public class Memoria {
 		return inteiro ? texto.replace(",0",""): texto;
 	}
 
-	// Detecta o tipo de comando
-	private TipoComando detectarTipoComando(String texto) {
+	// Detecta o tipo da operação 
+	private TipoOperacao detectaTipoOperacao(String texto) {
 		if(textoAtual.isEmpty() && texto == "0") {
 			return null;
 		}
 		try {
 			Integer.parseInt(texto);
-			return TipoComando.NUMERO;
+			return TipoOperacao.NUMERO;
 		} catch(NumberFormatException e) {
 			// Quando não for número..
 			if("%".equals(texto)) {
-				return TipoComando.PORCENTO;
+				return TipoOperacao.PORCENTO;
 			}else if("CE".equals(texto)) {
-				return TipoComando.ZERAR;
+				return TipoOperacao.ZERAR;
 			}else if("C".equals(texto)) {
-				return TipoComando.ZERAR;
+				return TipoOperacao.ZERAR;
 			}else if("/".equals(texto)) {
-				return TipoComando.DIV;
+				return TipoOperacao.DIVISAO;
 			}else if("X".equals(texto)) {
-				return TipoComando.MULT;
+				return TipoOperacao.MULTIPLICACAO;
 			}else if("-".equals(texto)) {
-				return TipoComando.SUB;
+				return TipoOperacao.SUBTRACAO;
 			}else if("+".equals(texto)) {
-				return TipoComando.SOMA;
+				return TipoOperacao.SOMATORIO;
 			}else if("=".equals(texto)) {
-				return TipoComando.IGUAL;
+				return TipoOperacao.IGUALDADE;
 			}else if(",".equals(texto) && !textoAtual.contains(",")) {
-				return TipoComando.VIRGULA;
+				return TipoOperacao.VIRGULA;
 			}else if("±".equals(texto)) {
-				return TipoComando.MAISOUMENOS;
+				return TipoOperacao.MAISOUMENOS;
 			}
 		}
 		return null;

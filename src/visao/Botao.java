@@ -13,7 +13,7 @@ public class Botao extends JButton{
 		setOpaque(true); 
 		setFont(new Font("Segoe UI", Font.PLAIN, 18)); 
 		setBackground(cor); 
-		setForeground(Color.WHITE);
+		setForeground(Color.WHITE); 
 		setBorder(BorderFactory.createLineBorder(new Color(31,31,31)));
 	}
 
