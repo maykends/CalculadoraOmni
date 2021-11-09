@@ -3,7 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Memoria {
+public class Operacao {
 	
 	// Define os tipos de operacação
 	private enum TipoOperacao{
@@ -20,26 +20,27 @@ public class Memoria {
 	};
 
 	// Cria uma instancia
-	private static Memoria instancia = new Memoria();
+	private static Operacao instancia = new Operacao();
 	
-	private final List<MemoriaObservador> observadores = 
+	// Cria ArrayList dos observadores
+	private final List<Observador> observadores = 
 			new ArrayList<>();
 	
 	private TipoOperacao ultimaOperacao = null;
-	private boolean substituir = false; 
-	private String textoAtual = ""; 
-	private String textoBuffer = "";
+	private boolean substituir = false; // Substituir + por - ou vice-versa
+	private String textoAtual = ""; // texto atual
+	private String textoBuffer = ""; // Texto na memória
 	
 	// Construtor em que controla a criacao dentro da propria classe
-	private Memoria() {
+	private Operacao() {
 	}
 	
 	// Método get, consigo pegar uma única instancia que foi criada na classe Memoria
-	public static Memoria getInstancia() {
+	public static Operacao getInstancia() {
 		return instancia;
 	}
 	
-	public void adicionarObservador(MemoriaObservador observador) {
+	public void adicionaObser(Observador observador) {
 		observadores.add(observador);
 	}
 
@@ -50,37 +51,37 @@ public class Memoria {
 	
 	public void processarComando(String texto) {
 		
-		TipoOperacao tipoComando = detectaTipoOperacao(texto);
-		System.out.println(tipoComando);
+		TipoOperacao tipoOperacao = detectaTipoOperacao(texto);
+		System.out.println(tipoOperacao);
 		
-		if(tipoComando == null) {
+		if(tipoOperacao == null) {
 			return;
-		}else if(tipoComando == TipoOperacao.ZERAR) {
+		}else if(tipoOperacao == TipoOperacao.ZERAR) {
 			textoAtual = "";
 			textoBuffer = "";
 			substituir = false;
 			ultimaOperacao = null;	
-		}else if(tipoComando == TipoOperacao.MAISOUMENOS && textoAtual.contains("-")) {
+		}else if(tipoOperacao == TipoOperacao.MAISOUMENOS && textoAtual.contains("-")) {
 			textoAtual = "-" + textoAtual.substring(1);
-		}else if(tipoComando == TipoOperacao.MAISOUMENOS && !textoAtual.contains("-")) {
+		}else if(tipoOperacao == TipoOperacao.MAISOUMENOS && !textoAtual.contains("-")) {
 			textoAtual = "-" + textoAtual;
 		}
 		
-		else if (tipoComando == TipoOperacao.NUMERO
-				|| tipoComando == TipoOperacao.VIRGULA) {
+		else if (tipoOperacao == TipoOperacao.NUMERO
+				|| tipoOperacao == TipoOperacao.VIRGULA) {
 			textoAtual = substituir ? texto : textoAtual + texto;
 			substituir = false; // depois daqui, são as operações
 		}else {
 			substituir = true; // Ao clicar em uma operação ele vai passar a calcular
-			textoAtual = obterResultadoOperacao();
+			textoAtual = ResultadoOperacao();
 			textoBuffer = textoAtual;
-			ultimaOperacao = tipoComando;
+			ultimaOperacao = tipoOperacao;
 		}
 		
 		observadores.forEach(o -> o.valorAlterado(getTextoAtual()));
 	}
 
-	private String obterResultadoOperacao() {
+	private String ResultadoOperacao() {
 		if(ultimaOperacao == null 
 				|| ultimaOperacao == TipoOperacao.IGUALDADE) {
 			return textoAtual;

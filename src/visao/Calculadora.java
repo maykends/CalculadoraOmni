@@ -11,7 +11,7 @@ public class Calculadora extends JFrame{
 		
 		organizaLayout();
 		
-		 // Dimensão da aplicacão
+		// Dimensão da aplicacão
 		setSize(334, 503);
 		// Título da aplicacão
 		setTitle("Calculadora"); 
@@ -26,11 +26,11 @@ public class Calculadora extends JFrame{
 	private void organizaLayout() {
 		setLayout(new BorderLayout());
 		
-		Display display = new Display();
+		DisplayCalc display = new DisplayCalc();
 		display.setPreferredSize(new Dimension(334, 170));
 		add(display, BorderLayout.NORTH);
 		
-		Teclado teclado = new Teclado();
+		TecladoCalc teclado = new TecladoCalc();
 		add(teclado, BorderLayout.CENTER); 
 	}
 

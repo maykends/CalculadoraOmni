@@ -3,20 +3,20 @@ package visao;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import modelo.Memoria;
+import modelo.Operacao;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class Teclado extends JPanel implements ActionListener{
+public class TecladoCalc extends JPanel implements ActionListener{
 	
 	// Define as cores dos botões
 	private final Color COR_CINZA_ESCURO = new Color(19, 19, 19);
 	private final Color COR_CINZA_CLARO = new Color(35, 35, 35);
 	private final Color COR_PRETO_CLARO = new Color(11, 11, 11);
 	
-	public Teclado() {
+	public TecladoCalc() {
 		
 		// Define cor de fundo
 		setBackground(COR_CINZA_CLARO);
@@ -56,8 +56,8 @@ public class Teclado extends JPanel implements ActionListener{
 	}
 
 	private void adcionaBotao(String textoBotao, Color cor) {
-		Botao botao = new Botao(textoBotao, cor); 
-		botao.addActionListener(this); // Escuta botões
+		BotaoCalc botao = new BotaoCalc(textoBotao, cor); 
+		botao.addActionListener(this); // Chamada dos botões
 		add(botao);
 	}
 
@@ -70,7 +70,7 @@ public class Teclado extends JPanel implements ActionListener{
 			System.out.println("Executando ...");
 			System.out.println(botao.getText());
 			// Captura o botão
-			Memoria.getInstancia().processarComando(botao.getText());
+			Operacao.getInstancia().processarComando(botao.getText());
 		}	
 	}
 }

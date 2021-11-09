@@ -6,9 +6,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class Botao extends JButton{
+public class BotaoCalc extends JButton{
 	
-	public Botao(String texto, Color cor) {
+	public BotaoCalc(String texto, Color cor) {
 		setText(texto);
 		setOpaque(true); 
 		setFont(new Font("Segoe UI", Font.PLAIN, 18)); 
