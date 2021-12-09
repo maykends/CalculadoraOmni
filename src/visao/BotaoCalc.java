@@ -8,11 +8,12 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class BotaoCalc extends JButton{
 	
+	// Construtor com dois argmentos (texto e cor)
 	public BotaoCalc(String texto, Color cor) {
 		setText(texto);
 		setOpaque(true); 
-		setFont(new Font("Segoe UI", Font.PLAIN, 18)); 
 		setBackground(cor); 
+		setFont(new Font("Segoe UI", Font.PLAIN, 18)); 
 		setForeground(Color.WHITE); 
 		setBorder(BorderFactory.createLineBorder(new Color(31,31,31)));
 	}

@@ -13,13 +13,23 @@ public class DisplayCalc extends JPanel implements Observador{
 	
 	private final JLabel label;
 
+	// Construtor da classe
 	public DisplayCalc() {
+	
 		Operacao.getInstancia().adicionaObser(this);
-		setBackground(new Color(31,31,31));
-		label = new JLabel(Operacao.getInstancia().getTextoAtual()); // Altera pelo textoAtual
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Segoe UI", Font.PLAIN, 45));
 		
+		// Define o Background do Display em RGB
+		setBackground(new Color(31,31,31));
+		
+		label = new JLabel(Operacao.getInstancia().getTextoAtual()); // Altera pelo textoAtual
+		//label = new JLabel("12345");
+		
+		// Define cor para o texto
+		label.setForeground(Color.WHITE);
+		// Define o tipo de fonte, estilo e tamanho
+		label.setFont(new Font("Segoe UI", Font.PLAIN, 35));
+	
+		// Define alinhamento para direita (horiozntal 10 e  vertical 100)
 		setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 100));
 		add(label);
 	}

@@ -16,6 +16,7 @@ public class TecladoCalc extends JPanel implements ActionListener{
 	private final Color COR_CINZA_CLARO = new Color(35, 35, 35);
 	private final Color COR_PRETO_CLARO = new Color(11, 11, 11);
 	
+	// Construtor da classe
 	public TecladoCalc() {
 		
 		// Define cor de fundo
@@ -51,10 +52,11 @@ public class TecladoCalc extends JPanel implements ActionListener{
 		// 5° linha
 		adcionaBotao("±", COR_PRETO_CLARO);
 		adcionaBotao("0", COR_PRETO_CLARO);
-		adcionaBotao(",", COR_PRETO_CLARO);
+		adcionaBotao(".", COR_PRETO_CLARO);
 		adcionaBotao("=", COR_CINZA_CLARO);		
 	}
 
+	// Método que adiciona a chamada para cada botão do teclado
 	private void adcionaBotao(String textoBotao, Color cor) {
 		BotaoCalc botao = new BotaoCalc(textoBotao, cor); 
 		botao.addActionListener(this); // Chamada dos botões
@@ -67,7 +69,9 @@ public class TecladoCalc extends JPanel implements ActionListener{
 		if (e.getSource() instanceof JButton) {
 			// faz um cast por conta que é gerado um object
 			JButton botao = (JButton) e.getSource(); 
+			// Mensagem no terminal
 			System.out.println("Executando ...");
+			// captura do tipo de comando no terminal
 			System.out.println(botao.getText());
 			// Captura o botão
 			Operacao.getInstancia().processarComando(botao.getText());
